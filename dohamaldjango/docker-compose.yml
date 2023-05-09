@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  db:
+    image: quay.service.idf/openshift_postgres-operator/crunchy-postgres-ha
+    enviroment:
+      POSTGRES_USER : newval
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: dohamal
+    volumes:
+      - /var/lib/postgresql/data:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
