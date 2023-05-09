@@ -1,0 +1,28 @@
+http://127.0.0.1:8080/tool/upload/
+
+יש כאלה שיצאו ??????????
+
+אם זה None זה כותבה "none"
+
+
+
+תמונה של צמרת לא עולה בSTATIC
+
+מבקש אימות כל פעם שעושים חזור
+
+url של הטוקן
+
+tools upload- add and not overwrite
+
+
+##change to isauthenticatedorreadonly
+
+add 'static/' to tzameret.0d6378d7.png in app.9202a7af.js
+
+
+
+לבדוק GET בדיקה לפי שם ולא לפי שם ומחלקה
+
+להחזיר את הבדיקות עם נבדק לאחרונה
+
+ליצור סופר יוזר בעצמו ומיגרציה?

@@ -1,0 +1,4 @@
+postgresql-10-2-72d8z
+DOHAMAL
+admin
+Aa123456

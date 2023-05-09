@@ -1,0 +1,31 @@
+להוריד ספריות
+pip install -r requirements.txt
+
+להריץ שרת
+py manage.py runserver
+
+יוזרים
+admin,admin
+tehnaiVC, Aa123456123456
+ahmashVC, Aa123456123456
+
+*רק לאחמשים יש הרשאות להוסיף\למחוק\ליערוך רכיבים*
+*לכל שאר האנדפוינטס יש גישה לטכנאים*
+
+הרשמה וקבלת טוקן
+http://127.0.0.1:8000/token/
+POST
+username:admin
+password:admin
+
+להוסיף לכל בקשה
+Headers
+Authorization:Token ffc7c89d7fe2edf397e57147e17027dd8d2c80a6
+
+התנתקות
+http://127.0.0.1:8000/logout/
+POST
+עם טוקן
+
+details לערוך
+http://127.0.0.1:8000/tool/updateDetails/

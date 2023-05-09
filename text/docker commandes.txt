@@ -1,0 +1,127 @@
+docker run --name postgrescontainer -e POSTGRESQL_USER=newval -e POSTGRESQL_PASSWORD=admin -e POSTGRESQL_DATABASE=dohamal --network=my-network -d  quay.service.idf/rhel8/postgresql-13
+POSTGRES_USER
+docker run --name postgresql-10-2-72d8z -e POSTGRESQL_USER=admin -e POSTGRESQL_PASSWORD=Aa123456 -e POSTGRESQL_DATABASE=DOHAMAL --network=my-network -d  quay.service.idf/rhel8/postgresql-13
+
+
+
+docker build -t postgresimage .
+docker build -t djangoimage .
+docker run --name postgrescontainer -d postgresimage
+docker run --name djangocontainer --link postgrescontainer:postgres -p 8000:8000 -d djangoimage
+docker run --name djangocontainer --link postgrescontainer -p 8000:8000 -d djangoimage
+
+docker exec -it djangocontainer bash
+
+
+
+docker network create my-network
+docker run --name djangocontainer -p 8000:8000 --network my-network -d djangoimage
+
+
+
+
+
+
+
+
+
+
+
+C:\Users\s8704173\Desktop\coding\projects\dohamal\back\dohamaldjango>docker exec -it djangocontainer bash
+(app-root) bash-4.2$
+(app-root) bash-4.2$
+(app-root) bash-4.2$ ls
+check  db.sqlite3  Dockerfile  dohamaldjango  env  hamal  manage.py  newfile  New Text Document.txt  report  requirements copy.txt  requirements.txt  static  static old  tool
+(app-root) bash-4.2$ python manage.py makemigrations
+env_variable_is_working
+Traceback (most recent call last):
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "tool_tool" does not exist
+LINE 1: ..."tool_tool"."boolChecks", "tool_tool"."info" FROM "tool_tool...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    main()
+  File "manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/core/management/__init__.py", line 446, in execute_from_command_line
+    utility.execute()
+  File "/opt/app-root/lib64/python3.8/site-packages/django/core/management/__init__.py", line 440, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/core/management/base.py", line 414, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/core/management/base.py", line 455, in execute
+    self.check()
+  File "/opt/app-root/lib64/python3.8/site-packages/django/core/management/base.py", line 487, in check
+    all_issues = checks.run_checks(
+  File "/opt/app-root/lib64/python3.8/site-packages/django/core/checks/registry.py", line 88, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/core/checks/urls.py", line 14, in check_url_config
+    return check_resolver(resolver)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/core/checks/urls.py", line 24, in check_resolver
+    return check_method()
+  File "/opt/app-root/lib64/python3.8/site-packages/django/urls/resolvers.py", line 480, in check
+    for pattern in self.url_patterns:
+  File "/opt/app-root/lib64/python3.8/site-packages/django/utils/functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/urls/resolvers.py", line 696, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/utils/functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/urls/resolvers.py", line 689, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/opt/rh/rh-python38/root/usr/lib64/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/code/dohamaldjango/urls.py", line 25, in <module>
+    path('tool/',include('tool.urls')),
+  File "/opt/app-root/lib64/python3.8/site-packages/django/urls/conf.py", line 38, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/opt/rh/rh-python38/root/usr/lib64/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/code/tool/urls.py", line 4, in <module>
+    from . import views
+  File "/code/tool/views.py", line 7, in <module>
+    from .serializers import ToolSerializer,ViewToolSerializer, FileToolSerializer
+  File "/code/tool/serializers.py", line 9, in <module>
+    class ViewToolSerializer(serializers.Serializer):
+  File "/code/tool/serializers.py", line 11, in ViewToolSerializer
+    TYPES =[tool.type for tool in Tool.objects.all() ]
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/models/query.py", line 320, in __iter__
+    self._fetch_all()
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/models/query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/models/query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/models/sql/compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/opt/app-root/lib64/python3.8/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "tool_tool" does not exist
+LINE 1: ..."tool_tool"."boolChecks", "tool_tool"."info" FROM "tool_tool...
