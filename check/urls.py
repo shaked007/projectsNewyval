@@ -18,6 +18,5 @@ urlpatterns = [
     ###
     path('upload/',views.uploadCheck.as_view()),
     ###
-
 ]
 

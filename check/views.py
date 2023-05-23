@@ -16,6 +16,9 @@ from dohamaldjango.permissions import IsInGroup_ahmashim, IsInGroup_tehnaim
 from rest_framework import status
 import io,csv,pandas as pd
 import json
+from hamal.models import Hamal
+from tool.models import Tool
+from report.models import Report
 class CheckList(generics.ListAPIView):
     permission_classes= [IsAuthenticatedOrReadOnly]
     queryset = Check.objects.all()
@@ -97,6 +100,7 @@ def create_mode(data):
         isCritical = data["isCritical"]
     )
     new_check.save()
+
 class uploadCheck(generics.CreateAPIView):
     serializer_class = FileCheckSerializer
     def post (self, request, *args, **kwargs):
