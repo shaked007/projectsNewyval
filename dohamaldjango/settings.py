@@ -33,7 +33,7 @@ print(env('RANDOM'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dohamal-django-dohamal.apps.marganit.openshift.idf']
 
 
 # Application definition
