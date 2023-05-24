@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 
 def send_mail_newval():
     smtp_server = 'edge.idf.il'
-    smtp_port = 35
+    smtp_port = 25
 
     subject = 'subject'
     message = 'my message'
