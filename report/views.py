@@ -79,7 +79,7 @@ def SendEmail(request,*args,**kwargs):
         from_email = from_email,
         recipient_list = [to_emails],
         html_message=html_content,
-        # fail_silently = False,
+        fail_silently = False,
     )
     return JsonResponse({'message': 'mail sent'}, status=200)
     # except:
