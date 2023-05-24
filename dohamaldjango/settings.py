@@ -171,3 +171,4 @@ STATIC_URL = '/static/'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'edge.idf.il'
 EMAIL_PORT = 25
+EMAIL_USE_TLS  = True

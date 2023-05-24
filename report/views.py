@@ -58,24 +58,34 @@ def SendEmail(request,*args,**kwargs):
     # text_content = 'This is an important message.'
     # html_content = '<p> this is an <strong> important </strong> message. </p>'
 
-    subject =  request.POST.get('subject')
-    from_email =  request.POST.get('from_email')
-    to_email =  request.POST.get('to_email')
-    text_content =  request.POST.get('text_content')
-    html_content =  request.POST.get('html_content')
-    print(subject,from_email,to_email,text_content,html_content)
+    subject =  request.POST.get('Subject')
+    from_email =  request.POST.get('From')
+    to_emails =  request.POST.get('To')
+
+
+    to_emails = [].append(to_emails)
+
+
+
+    # text_content =  request.POST.get('text_content')
+    html_content =  request.POST.get('Body')
+    print(subject,from_email,to_emails,html_content)
     # msg = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
     # msg.attach_alternative(html_content,"text/html")
     # msg.send()
-    
-    send_mail(
-        subject = subject,
-        message = text_content,
-        from_email = from_email,
-        recipient_list = [to_email],
-        html_message=html_content,
-        fail_silently = False,
-    )
+    try:
+        send_mail(
+            subject = subject,
+            # message = text_content,
+            from_email = from_email,
+            recipient_list = to_emails,
+            html_message=html_content,
+            fail_silently = False,
+        )
+        return JsonResponse({'message': 'mail sent'}, status=200)
+    except:
+
+    #return 200 and 400
 
     # msg = EmailMessage('RC','here is the message',to=['s8704173@army.idf.il'])
     # msg.send()
@@ -94,7 +104,7 @@ def SendEmail(request,*args,**kwargs):
     # )
     # send_mail('diditwork?','test message', from_email, [to_email],connection = connection)
     # data=[]
-    return JsonResponse({'message': 'mail sent'})
+        return JsonResponse({'message': 'server error'}, status=400)
     # return Response()
 
 
