@@ -61,9 +61,7 @@ def SendEmail(request,*args,**kwargs):
     subject =  request.POST.get('Subject')
     from_email =  request.POST.get('From')
     to_emails =  request.POST.get('To')
-
-
-    to_emails = [].append(to_emails)
+    # to_emails = [].append(to_emails)
 
 
 
@@ -73,17 +71,18 @@ def SendEmail(request,*args,**kwargs):
     # msg = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
     # msg.attach_alternative(html_content,"text/html")
     # msg.send()
-    try:
-        send_mail(
-            subject = subject,
-            # message = text_content,
-            from_email = from_email,
-            recipient_list = to_emails,
-            html_message=html_content,
-            fail_silently = False,
-        )
-        return JsonResponse({'message': 'mail sent'}, status=200)
-    except:
+    # try:
+    send_mail(
+        subject = subject,
+        # message = text_content,
+        message='',
+        from_email = from_email,
+        recipient_list = [to_emails],
+        html_message=html_content,
+        # fail_silently = False,
+    )
+    return JsonResponse({'message': 'mail sent'}, status=200)
+    # except:
 
     #return 200 and 400
 
@@ -104,7 +103,9 @@ def SendEmail(request,*args,**kwargs):
     # )
     # send_mail('diditwork?','test message', from_email, [to_email],connection = connection)
     # data=[]
-        return JsonResponse({'message': 'server error'}, status=400)
+
+    #    return JsonResponse({'message': 'server error'}, status=400)
+
     # return Response()
 
 
