@@ -73,12 +73,21 @@ def SendEmail(request,*args,**kwargs):
     # msg.send()
     # try:
     send_mail(
-        subject = subject,
+        # subject = subject,
+        # # message = text_content,
+        # message='',
+        # from_email = from_email,
+        # recipient_list = [to_emails],
+        # html_message=html_content,
+
+        subject = 'subject',
         # message = text_content,
         message='',
-        from_email = from_email,
-        recipient_list = [to_emails],
-        html_message=html_content,
+        from_email = 's8704173@army.idf.il',
+        recipient_list = ['s8704173@army.idf.il'],
+        html_message='<p> this is an <strong> important </strong> message. </p>',
+
+
         fail_silently = False,
     )
     return JsonResponse({'message': 'mail sent'}, status=200)
