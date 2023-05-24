@@ -15,6 +15,8 @@ from dohamaldjango.permissions import IsInGroup_ahmashim, IsInGroup_tehnaim
 from check.models import Check
 from check.serializers import CheckSerializer
 from django.http import JsonResponse
+
+from .mail import send_mail_newval
 # Create your views here.
 class ReportRetrieve(generics.RetrieveAPIView):
     permission_classes= [IsAuthenticatedOrReadOnly] ##change to isingrouptehnaimorreadonly
@@ -72,24 +74,27 @@ def SendEmail(request,*args,**kwargs):
     # msg.attach_alternative(html_content,"text/html")
     # msg.send()
     # try:
-    send_mail(
-        # subject = subject,
-        # # message = text_content,
-        # message='',
-        # from_email = from_email,
-        # recipient_list = [to_emails],
-        # html_message=html_content,
-
-        subject = 'subject',
-        # message = text_content,
-        message='',
-        from_email = 's8704173@army.idf.il',
-        recipient_list = ['s8704173@army.idf.il'],
-        html_message='<p> this is an <strong> important </strong> message. </p>',
 
 
-        fail_silently = False,
-    )
+    send_mail_newval()
+    # send_mail(
+    #     # subject = subject,
+    #     # # message = text_content,
+    #     # message='',
+    #     # from_email = from_email,
+    #     # recipient_list = [to_emails],
+    #     # html_message=html_content,
+
+    #     subject = 'subject',
+    #     # message = text_content,
+    #     message='',
+    #     from_email = 's8704173@army.idf.il',
+    #     recipient_list = ['s8704173@army.idf.il'],
+    #     html_message='<p> this is an <strong> important </strong> message. </p>',
+
+
+    #     fail_silently = False,
+    # )
     return JsonResponse({'message': 'mail sent'}, status=200)
     # except:
 
