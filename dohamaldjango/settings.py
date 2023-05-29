@@ -17,6 +17,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 IF_POSTGRES = True
+IS_OC = True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,7 +91,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dohamaldjango.wsgi.application'
 
-
+if IS_OC:
+    db_host = env('DATABASE_HOST_OC')
+else:
+    db_host = env('DATABASE_HOST')
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 if not IF_POSTGRES:
@@ -107,7 +111,8 @@ else:
             'NAME': env('DATABASE_NAME'),
             'USER' : env('DATABASE_USER'),
             'PASSWORD': env('DATABASE_PASS'),
-            'HOST' : env('DATABASE_HOST'),
+            
+            'HOST' : db_host,
             # 'NAME':"dohamal",
             # 'USER' : "newval",
             # 'PASSWORD': "admin",
@@ -169,9 +174,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = '/static/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'edge.idf.il'
+#EMAIL_HOST = 'edge.idf.il'
+EMAIL_HOST = '220.1.4.3'
 EMAIL_PORT = 25
-EMAIL_USE_TLS  = True
-EMAIL_USE_SSL  = False
-EMAIL_DEBUG = True
-EMAIL_TIMEOUT = 120
+# EMAIL_USE_TLS  = True
+# EMAIL_USE_SSL  = False
+# EMAIL_DEBUG = True
+# EMAIL_TIMEOUT = 120
