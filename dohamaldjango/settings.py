@@ -16,7 +16,7 @@ import environ
 
 env = environ.Env()
 environ.Env.read_env()
-IF_POSTGRES = True
+IF_POSTGRES = False
 IS_OC = True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
